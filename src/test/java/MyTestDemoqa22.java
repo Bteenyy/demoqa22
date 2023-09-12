@@ -27,10 +27,16 @@ public class MyTestDemoqa22 {
         $x("//option[contains(@value, '1992')]").click();
         $x("//option[@value='3']").click();
         $x("//div[contains(@class, 'react-datepicker__day--027')]").click();
-        // $x("//div[contains(@class, 'value')]").setValue("Geometry").pressEnter();
+        $x("//div[contains(@class, 'value')]").setValue("che").pressEnter();
         $(byText("Sports")).click();
         $(byText("Reading")).click();
-        $(byText("Music")).click();
+        $x("//*[@id='hobbies-checkbox-3']").click();
         $x("//*[@id='uploadPicture']").uploadFromClasspath("lion.jpg");
+        $x("//*[@id='currentAddress']").setValue("Russia");
+        $x("//*[@id='stateCity-wrapper']").click();
+        $x("//*[@id='react-select-3-option-0']").click();
+        $x("//*[@id='city']").click();
+        $x("//*[@id='react-select-4-option-1']").click();
+        $x("//*[@id='submit']").click();
     }
 }
