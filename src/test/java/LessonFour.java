@@ -15,7 +15,7 @@ public class LessonFour {
     }
 
     @Test
-    void SelenideInGithub() {
+    void selenideInGithub() {
         open("selenide/selenide");
         $("#wiki-tab").click();
         $("#wiki-pages-box").$(withText("Show 2 more pages")).click();
