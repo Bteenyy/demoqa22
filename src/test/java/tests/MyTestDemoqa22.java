@@ -3,16 +3,17 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 public class MyTestDemoqa22 extends TestBase {
+    RegistrationPage registrationPage=new RegistrationPage();
 
     @Test
     void demoQaTest() {
         open("/automation-practice-form");
-
-        $x("//*[@id='firstName']").setValue("Rashit");
+        registrationPage.setFirstName("Rashit");
         $x("//*[@id='lastName']").setValue("Sakhbutdinov");
         $x("//*[@id='userEmail']").setValue("rasitsahbutdinov915455@gmail.com");
         $x("//div[contains(@class, 'custom-radio')][.//*[@id='gender-radio-1']]").click();
