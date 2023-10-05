@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class MyTestDemoqa22 extends TestBase {
@@ -15,12 +16,9 @@ public class MyTestDemoqa22 extends TestBase {
         registrationPage.setFirstName("Rashit");
         registrationPage.setLastName("Sakhbutdinov");
         registrationPage.setUserEmail("rasitsahbutdinov915455@gmail.com");
-        $x("//div[contains(@class, 'custom-radio')][.//*[@id='gender-radio-1']]").click();
-        $x("//*[@id='userNumber']").setValue("1234567890");
-        $x("//*[@id='dateOfBirthInput']").click();
-        $x("//option[contains(@value, '1992')]").click();
-        $x("//option[@value='3']").click();
-        $x("//div[contains(@class, 'react-datepicker__day--027')]").click();
+        registrationPage.setGender("Male");
+        registrationPage.setUserNumber("1234567890");
+
         $x("//*[@id='subjectsInput']").setValue("che").pressEnter();
         $x("//div[contains(@class, 'custom-control')][.//*[@id='hobbies-checkbox-1']]").click();
         $x("//*[@id='uploadPicture']").uploadFromClasspath("lion.jpg");
@@ -41,5 +39,6 @@ public class MyTestDemoqa22 extends TestBase {
         $x("//div[@class='modal-content']").shouldHave(text("lion.jpg"));
         $x("//div[@class='modal-content']").shouldHave(text("Russia"));
         $x("//div[@class='modal-content']").shouldHave(text("NCR Gurgaon"));
+        //sleep(4000);
     }
 }
