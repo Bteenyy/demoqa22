@@ -1,29 +1,26 @@
 package tests;
 
-import org.junit.Test;
-import pages.TextBox;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
+import org.junit.jupiter.api.Test;
+import pages.TextBoxPage;
 
-public class TextBoxTest {
-    public class TextBoxTests extends TestBase {
-        TextBox textBox = new TextBox();
+public class TextBoxTest extends TestBase {
 
-        @Test
-        void fillFormTest() {
-            textBox.openPage()
-                    .setUserName("Alex Egorov")
-                    .setUserEmail("alex@egorov.com")
-                    .setUserAddress("Some address 1")
-                    .finishTest();
+    TextBoxPage textBox = new TextBoxPage();
 
+    @Test
+    void fillFormTest() {
+        textBox.openPage()
+                .setUserName("Alex Egorov")
+                .setUserEmail("alex@egorov.com")
+                .setUserAddress("Some address 1")
+                .setUserPermAddress("Another address 1")
+                .finishTest()
+                .checkResult("name", "Alex Egorov")
+                .checkResult("email", "alex@egorov.com")
+                .checkResult("currentAddress", "Some address 1")
+                .checkResult("permanentAddress", "Another address 1");
 
-//        $("#output").$("#name").shouldHave(text("Alex Egorov"));
-            $("#output #name").shouldHave(text("Alex Egorov"));
-            $("#output #email").shouldHave(text("alex@egorov.com"));
-            $("#output #currentAddress").shouldHave(text("Some address 1"));
-            $("#output #permanentAddress").shouldHave(text("Another address 1"));
-        }
     }
+
 }

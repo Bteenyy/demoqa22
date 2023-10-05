@@ -5,7 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
-public class TextBox {
+public class TextBoxPage {
     SelenideElement userNameInput = $("#userName"),
             userEmailInput = $("#userEmail"),
             addressInput = $("#currentAddress"),
@@ -13,37 +13,40 @@ public class TextBox {
             submitButton = $("#submit");
 
 
-    public TextBox openPage() {
+    public TextBoxPage openPage() {
         open("/text-box");
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
 
-    public TextBox setUserName(String value) {
+    public TextBoxPage setUserName(String value) {
         userNameInput.setValue(value);
         return this;
     }
 
-    public TextBox setUserEmail(String value) {
+    public TextBoxPage setUserEmail(String value) {
         userEmailInput.setValue(value);
         return this;
     }
 
-    public TextBox setUserAddress(String value) {
+    public TextBoxPage setUserAddress(String value) {
         addressInput.setValue(value);
         return this;
     }
 
-    public TextBox setUserPermAddress(String value) {
+    public TextBoxPage setUserPermAddress(String value) {
         permAddressInput.setValue(value);
         return this;
     }
 
-    public TextBox finishTest() {
+    public TextBoxPage finishTest() {
         submitButton.click();
         return this;
     }
 
+    public TextBoxPage checkResult(String key, String value) {
+        $("#output #" + key).shouldHave(text(value));
+        return this;
+    }
 }
