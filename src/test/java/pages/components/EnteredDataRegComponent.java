@@ -1,7 +1,7 @@
 package pages.components;
 
 public class EnteredDataRegComponent {
-    public final String firstName = "Rashit",
+    public String firstName = "Rashit",
             lastName = "Sakhbutdinov",
             userEmail = "rasitsahbutdinov915455@gmail.com",
             gender = "Male",
