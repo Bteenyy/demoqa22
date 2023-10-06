@@ -1,36 +1,35 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import pages.RegistrationPage;
 
 public class MyTestDemoqa22 extends TestBase {
-    RegistrationPage registrationPage = new RegistrationPage();
+
 
     @Test
     void demoQaTest() {
         registrationPage.openPage()
-                .setFirstName("Rashit")
-                .setLastName("Sakhbutdinov")
-                .setUserEmail("rasitsahbutdinov915455@gmail.com")
-                .setGender("Male")
-                .setUserNumber("1234567890")
-                .setDateOfB("27", "April", "1992")
-                .setSubjectsInput("che")
-                .setHobbiesInput("Sports")
-                .setPicturesInput("lion.jpg")
-                .setAddressInput("Russia")
-                .setStateInput("NCR")
-                .setCityInput("Gurgaon")
+                .setFirstName(dataReg.firstName)
+                .setLastName(dataReg.lastName)
+                .setUserEmail(dataReg.userEmail)
+                .setGender(dataReg.gender)
+                .setUserNumber(dataReg.userNumber)
+                .setDateOfB(dataReg.dayClendar, dataReg.monthCalendar, dataReg.yearCalendar)
+                .setSubjectsInput(dataReg.subjectsInput)
+                .setHobbiesInput(dataReg.hobbiesInput)
+                .setPicturesInput(dataReg.picturesInput)
+                .setAddressInput(dataReg.addressInput)
+                .setStateInput(dataReg.stateInput)
+                .setCityInput(dataReg.cityInput)
                 .finishTest()
-                .checkResult("Student Name", "Rashit Sakhbutdinov")
-                .checkResult("Student Email", "rasitsahbutdinov915455@gmail.com")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "1234567890")
-                .checkResult("Date of Birth", "27 April,1992")
-                .checkResult("Subjects", "Chemistry")
-                .checkResult("Hobbies", "Sports")
-                .checkResult("Picture", "lion.jpg")
-                .checkResult("Address", "Russia")
-                .checkResult("State and City", "NCR Gurgaon");
+                .checkResult("Student Name", dataReg.firstName + " " + dataReg.lastName)
+                .checkResult("Student Email", dataReg.userEmail)
+                .checkResult("Gender", dataReg.gender)
+                .checkResult("Mobile", dataReg.userNumber)
+                .checkResult("Date of Birth", dataReg.dayClendar + " " + dataReg.monthCalendar + "," + dataReg.yearCalendar)
+                .checkResult("Subjects", dataReg.subjectsInput)
+                .checkResult("Hobbies", dataReg.hobbiesInput)
+                .checkResult("Picture", dataReg.picturesInput)
+                .checkResult("Address", dataReg.addressInput)
+                .checkResult("State and City", dataReg.stateInput + " " + dataReg.cityInput);
     }
 }
