@@ -2,12 +2,17 @@ package tests;
 
 
 import org.junit.jupiter.api.Test;
-public class TextBoxTest extends TestBase {
+import pages.TextBoxPage;
+import pages.components.EnteredDataTextBoxComponent;
 
+public class TextBoxTest extends TestBase {
+    TextBoxPage textBox = new TextBoxPage();
+    EnteredDataTextBoxComponent dataTextBox = new EnteredDataTextBoxComponent();
 
     @Test
     void fillFormTest() {
         textBox.openPage()
+                .fixBanBox()
                 .setUserName(dataTextBox.uerName)
                 .setUserEmail(dataTextBox.userEmail)
                 .setUserAddress(dataTextBox.userAddress)

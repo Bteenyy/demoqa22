@@ -27,6 +27,10 @@ public class RegistrationPage {
     public RegistrationPage openPage() {
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        return this;
+    }
+
+    public RegistrationPage fixBanReg() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
@@ -101,7 +105,7 @@ public class RegistrationPage {
     }
 
     public RegistrationPage checkResult(String key, String result) {
-        receivingResult. $(byText(key)).parent().shouldHave(text(result));
+        receivingResult.$(byText(key)).parent().shouldHave(text(result));
         return this;
     }
 }

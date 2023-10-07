@@ -1,13 +1,17 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
+import pages.components.EnteredDataRegComponent;
 
 public class MyTestDemoqa22 extends TestBase {
-
+    RegistrationPage registrationPage = new RegistrationPage();
+    EnteredDataRegComponent dataReg = new EnteredDataRegComponent();
 
     @Test
     void demoQaTest() {
         registrationPage.openPage()
+                .fixBanReg()
                 .setFirstName(dataReg.firstName)
                 .setLastName(dataReg.lastName)
                 .setUserEmail(dataReg.userEmail)
