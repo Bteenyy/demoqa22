@@ -1,4 +1,4 @@
-package pages.components;
+package utils;
 
 import com.github.javafaker.Faker;
 
@@ -34,7 +34,7 @@ public class EnteredDataRegComponent {
     public String userEmail = faker.internet().emailAddress();
     public String gender = genders[faker.number().numberBetween(0, genders.length - 1)];
     public String userNumber = faker.phoneNumber().subscriberNumber(10);
-    public Date date = faker.date().birthday();
+    Date date = faker.date().birthday();
     public String dayOfB = new SimpleDateFormat("dd").format(date);
     public String monthCalendar = new SimpleDateFormat("MMMM", Locale.ENGLISH).format(date);
     public String yearCalendar = new SimpleDateFormat("y").format(date);

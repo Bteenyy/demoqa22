@@ -3,7 +3,7 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
-import pages.components.EnteredDataRegComponent;
+import utils.EnteredDataRegComponent;
 
 public class TextBoxTest extends TestBase {
     TextBoxPage textBox = new TextBoxPage();
