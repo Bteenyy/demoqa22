@@ -1,5 +1,6 @@
 package tests;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.EnteredDataRegComponent;
