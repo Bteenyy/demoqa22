@@ -19,6 +19,7 @@ public class TextBoxPage {
         executeJavaScript("$('footer').remove()");
         return this;
     }
+
     public TextBoxPage fixBanBox() {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");

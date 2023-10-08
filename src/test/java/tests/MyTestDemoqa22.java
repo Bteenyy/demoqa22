@@ -1,11 +1,8 @@
 package tests;
 
-import org.apache.commons.lang3.RandomUtils;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import pages.components.EnteredDataRegComponent;
-
-import java.util.Date;
 
 public class MyTestDemoqa22 extends TestBase {
     RegistrationPage registrationPage = new RegistrationPage();

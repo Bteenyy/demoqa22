@@ -3,25 +3,25 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
-import pages.components.EnteredDataTextBoxComponent;
+import pages.components.EnteredDataRegComponent;
 
 public class TextBoxTest extends TestBase {
     TextBoxPage textBox = new TextBoxPage();
-    EnteredDataTextBoxComponent dataTextBox = new EnteredDataTextBoxComponent();
+    EnteredDataRegComponent dataTextBox = new EnteredDataRegComponent();
 
     @Test
     void fillFormTest() {
         textBox.openPage()
                 .fixBanBox()
-                .setUserName(dataTextBox.uerName)
+                .setUserName(dataTextBox.firstName + " " + dataTextBox.lastName)
                 .setUserEmail(dataTextBox.userEmail)
-                .setUserAddress(dataTextBox.userAddress)
-                .setUserPermAddress(dataTextBox.userPermAddress)
+                .setUserAddress(dataTextBox.addressInput)
+                .setUserPermAddress(dataTextBox.secondAddress)
                 .finishTest()
-                .checkResult("name", dataTextBox.uerName)
+                .checkResult("name", dataTextBox.firstName + " " + dataTextBox.lastName)
                 .checkResult("email", dataTextBox.userEmail)
-                .checkResult("currentAddress", dataTextBox.userAddress)
-                .checkResult("permanentAddress", dataTextBox.userPermAddress);
+                .checkResult("currentAddress", dataTextBox.addressInput)
+                .checkResult("permanentAddress", dataTextBox.secondAddress);
 
     }
 
