@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.openqa.selenium.By;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -16,14 +17,14 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
-public class LessonTen {
+public class LessonTen extends ConfigLessonTen {
     @BeforeEach
     void setup() {
-        open("https://ru.dotabuff.com");
+        open("https://dotabuff.com");
     }
 
+    @Tag("CheckingSearch")
     @ValueSource(strings = {"Chen", "Pudge", "Axe"})
-    @Tag("CheckindSearch")
     @DisplayName("")
     @ParameterizedTest
     void testByOneValue(String heroName) {
@@ -36,7 +37,7 @@ public class LessonTen {
             "Pudge, Disabler",
             "Axe, Carry"
     })
-    @Tag("CheckindSearch")
+    @Tag("CheckingPosition")
     @DisplayName("")
     @ParameterizedTest
     void testByTwoValue(String heroName, String typeOfHero) {
@@ -46,17 +47,19 @@ public class LessonTen {
 
     static Stream<Arguments> testByThreeValue() {
         return Stream.of(
-                Arguments.of("Abaddon", List.of("Abaddon", "Melee", "Carry", "Durable", "Support")),
-                Arguments.of("Axe", List.of("Axe", "Melee", "Carry", "Disabler", "Durable", "Initiator"))
+                Arguments.of("Axe", List.of("Berserker's Call", "Battle Hunger", "Counter Helix", "Culling Blade")),
+                Arguments.of("Chen", List.of("Penitence", "Holy persuasion", "Divine favor", "Hand of god")),
+                Arguments.of("Slark", List.of("Dark pact", "Pounce", "Essence shift", "Depth shroud", "Shadow dance"))
         );
     }
 
+    @Tag("CheckingAbilities")
     @MethodSource
     @ParameterizedTest
     void testByThreeValue(String heroName, List<String> talents) {
         $(".home-search").$("#q").setValue(heroName).pressEnter();
-        sleep(10000);
         $(".inner").$(".body-item").click();
-        $$(".header-content-title").filter(visible).shouldHave(texts(talents));
+        $$("ul.dropdown-menu li a").findBy(text("Abilities")).click();
+        $(".col-8").$$(By.tagName("header")).shouldHave(texts(talents));
     }
 }
