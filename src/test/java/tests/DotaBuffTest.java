@@ -32,8 +32,7 @@ public class DotaBuffTest extends ConfigDotaBuff {
             "Axe, Carry"
     })
     @Tags({@Tag("UI"), @Tag("Type"), @Tag("Regress")})
-    @DisplayName("В поисковой выдаче присутствует категория героя TEST-DATA[1] под именем героя TEST-DATA[0]")
-    @ParameterizedTest
+    @ParameterizedTest(name = "В поисковой выдаче присутствует категория героя TEST-DATA[1] под именем героя TEST-DATA[0]")
     void testByTwoValue(String heroName, String typeOfHero) {
         dotaBuffPage.openPage()
                 .setHeroName(heroName)
@@ -49,9 +48,8 @@ public class DotaBuffTest extends ConfigDotaBuff {
     }
 
     @Tags({@Tag("UI"), @Tag("Abilities"), @Tag("Regress")})
-    @DisplayName("    Во вкладе способности героя TEST-DATA[0] присутствуют способности TEST-DATA[1,2,3,4]")
     @MethodSource
-    @ParameterizedTest
+    @ParameterizedTest(name = "Во вкладе способности героя TEST-DATA[0] присутствуют способности TEST-DATA[1,2,3,4]")
     void testByThreeValue(String heroName, List<String> talents) {
         dotaBuffPage.openPage()
                 .setHeroName(heroName)
