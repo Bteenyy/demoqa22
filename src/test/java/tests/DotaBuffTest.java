@@ -2,6 +2,7 @@ package tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -18,7 +19,7 @@ public class DotaBuffTest extends ConfigDotaBuff {
 
     @ValueSource(strings = {"Chen", "Pudge", "Axe"})
     @ParameterizedTest(name = "В поисковой выдаче присутствует имя героя TEST-DATA[0] для запроса TEST-DATA[0]")
-    @Tag("CheckingSearch")
+    @Tags({@Tag("UI"), @Tag("Search"), @Tag("Smoke")})
     void testByOneValue(String heroName) {
         dotaBuffPage.openPage()
                 .setHeroName(heroName)
@@ -30,7 +31,7 @@ public class DotaBuffTest extends ConfigDotaBuff {
             "Pudge, Disabler",
             "Axe, Carry"
     })
-    @Tag("CheckingPosition")
+    @Tags({@Tag("UI"), @Tag("Type"), @Tag("Regress")})
     @DisplayName("В поисковой выдаче присутствует категория героя TEST-DATA[1] под именем героя TEST-DATA[0]")
     @ParameterizedTest
     void testByTwoValue(String heroName, String typeOfHero) {
@@ -47,7 +48,7 @@ public class DotaBuffTest extends ConfigDotaBuff {
         );
     }
 
-    @Tag("CheckingAbilities")
+    @Tags({@Tag("UI"), @Tag("Abilities"), @Tag("Regress")})
     @DisplayName("    Во вкладе способности героя TEST-DATA[0] присутствуют способности TEST-DATA[1,2,3,4]")
     @MethodSource
     @ParameterizedTest
