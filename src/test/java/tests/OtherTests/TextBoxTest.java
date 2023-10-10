@@ -1,8 +1,9 @@
-package tests;
+package tests.OtherTests;
 
 
 import org.junit.jupiter.api.Test;
 import pages.TextBoxPage;
+import tests.OtherTests.TestBase;
 import utils.EnteredDataRegComponent;
 
 public class TextBoxTest extends TestBase {

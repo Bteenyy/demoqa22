@@ -1,6 +1,5 @@
 package tests;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,28 +7,22 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.openqa.selenium.By;
+import pages.DotaBuffPage;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.codeborne.selenide.CollectionCondition.texts;
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
 
-public class LessonTen extends ConfigLessonTen {
-    @BeforeEach
-    void setup() {
-        open("https://dotabuff.com");
-    }
+public class DotaBuffTest extends ConfigDotaBuff {
+    DotaBuffPage dotaBuffPage = new DotaBuffPage();
 
-    @Tag("CheckingSearch")
     @ValueSource(strings = {"Chen", "Pudge", "Axe"})
-    @DisplayName("")
-    @ParameterizedTest
+    @ParameterizedTest(name = "В поисковой выдаче присутствует имя героя TEST-DATA[0] для запроса TEST-DATA[0]")
+    @Tag("CheckingSearch")
     void testByOneValue(String heroName) {
-        $(".home-search").$("#q").setValue(heroName).pressEnter();
-        $(".hero-link").shouldHave(text(heroName));
+        dotaBuffPage.openPage()
+                .setHeroName(heroName)
+                .checkResultNameHero(heroName);
     }
 
     @CsvSource(value = {
@@ -38,11 +31,12 @@ public class LessonTen extends ConfigLessonTen {
             "Axe, Carry"
     })
     @Tag("CheckingPosition")
-    @DisplayName("")
+    @DisplayName("В поисковой выдаче присутствует категория героя TEST-DATA[1] под именем героя TEST-DATA[0]")
     @ParameterizedTest
     void testByTwoValue(String heroName, String typeOfHero) {
-        $(".home-search").$("#q").setValue(heroName).pressEnter();
-        $(".inner").$(".body-item").shouldHave(text(typeOfHero));
+        dotaBuffPage.openPage()
+                .setHeroName(heroName)
+                .checkResultTypeHero(typeOfHero);
     }
 
     static Stream<Arguments> testByThreeValue() {
@@ -54,12 +48,14 @@ public class LessonTen extends ConfigLessonTen {
     }
 
     @Tag("CheckingAbilities")
+    @DisplayName("    Во вкладе способности героя TEST-DATA[0] присутствуют способности TEST-DATA[1,2,3,4]")
     @MethodSource
     @ParameterizedTest
     void testByThreeValue(String heroName, List<String> talents) {
-        $(".home-search").$("#q").setValue(heroName).pressEnter();
-        $(".inner").$(".body-item").click();
-        $$("ul.dropdown-menu li a").findBy(text("Abilities")).click();
-        $(".col-8").$$(By.tagName("header")).shouldHave(texts(talents));
+        dotaBuffPage.openPage()
+                .setHeroName(heroName)
+                .clickHeroName()
+                .abilitiesButton()
+                .checkAbilities(talents);
     }
 }
