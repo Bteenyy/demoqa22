@@ -1,4 +1,4 @@
-package tests.OtherTests;
+package tests.othertests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;

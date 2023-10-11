@@ -1,6 +1,5 @@
 package tests;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,9 +17,9 @@ public class DotaBuffTest extends ConfigDotaBuff {
     DotaBuffPage dotaBuffPage = new DotaBuffPage();
 
     @ValueSource(strings = {"Chen", "Pudge", "Axe"})
-    @ParameterizedTest(name = "В поисковой выдаче присутствует имя героя TEST-DATA[0] для запроса TEST-DATA[0]")
+    @ParameterizedTest(name = "В поисковой выдаче присутствует имя героя {0} для запроса {0}")
     @Tags({@Tag("UI"), @Tag("Search"), @Tag("Smoke")})
-    void testByOneValue(String heroName) {
+    void testByOneValueTest(String heroName) {
         dotaBuffPage.openPage()
                 .setHeroName(heroName)
                 .checkResultNameHero(heroName);
@@ -32,14 +31,14 @@ public class DotaBuffTest extends ConfigDotaBuff {
             "Axe, Carry"
     })
     @Tags({@Tag("UI"), @Tag("Type"), @Tag("Regress")})
-    @ParameterizedTest(name = "В поисковой выдаче присутствует категория героя TEST-DATA[1] под именем героя TEST-DATA[0]")
-    void testByTwoValue(String heroName, String typeOfHero) {
+    @ParameterizedTest(name = "В поисковой выдаче присутствует категория героя {1} под именем героя {0}")
+    void testByTwoValueTest(String heroName, String typeOfHero) {
         dotaBuffPage.openPage()
                 .setHeroName(heroName)
                 .checkResultTypeHero(typeOfHero);
     }
 
-    static Stream<Arguments> testByThreeValue() {
+    static Stream<Arguments> testByThreeValueTest() {
         return Stream.of(
                 Arguments.of("Axe", List.of("Berserker's Call", "Battle Hunger", "Counter Helix", "Culling Blade")),
                 Arguments.of("Chen", List.of("Penitence", "Holy persuasion", "Divine favor", "Hand of god")),
@@ -49,8 +48,8 @@ public class DotaBuffTest extends ConfigDotaBuff {
 
     @Tags({@Tag("UI"), @Tag("Abilities"), @Tag("Regress")})
     @MethodSource
-    @ParameterizedTest(name = "Во вкладе способности героя TEST-DATA[0] присутствуют способности TEST-DATA[1,2,3,4]")
-    void testByThreeValue(String heroName, List<String> talents) {
+    @ParameterizedTest(name = "Во вкладе способности героя {0} присутствуют способности {1}")
+    void testByThreeValueTest(String heroName, List<String> talents) {
         dotaBuffPage.openPage()
                 .setHeroName(heroName)
                 .clickHeroName()
